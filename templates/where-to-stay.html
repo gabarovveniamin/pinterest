@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Where To Stay Template</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#dfe3dc;
+    font-family:'Oswald', sans-serif;
+    width:1000px;
+    height:1500px;
+    margin:0;
+    padding:0;
+}
+
+.poster{
+    width:100%;
+    height:100%;
+    background:#f6f1ea;
+    overflow:hidden;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    position:relative;
+    height:450px;
+    overflow:hidden;
+}
+
+.hero img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+.hero-overlay{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(
+        to right,
+        rgba(246,241,234,0.85) 0%,
+        rgba(246,241,234,0.65) 35%,
+        rgba(246,241,234,0.05) 100%
+    );
+}
+
+.hero-content{
+    position:absolute;
+    top:35px;
+    left:35px;
+    width:500px;
+    z-index:2;
+}
+
+.brush{
+    display:inline-block;
+    background:#73816d;
+    color:white;
+    padding:10px 22px;
+    font-size:34px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    transform:rotate(-2deg);
+}
+
+.big-title{
+    margin-top:10px;
+    line-height:0.95;
+}
+
+.big-title .stay{
+    display:block;
+    font-size:95px;
+    font-family:'Playfair Display', serif;
+    color:#2d2d2d;
+}
+
+.big-title .city{
+    display:block;
+    font-size:72px;
+    color:#73816d;
+    text-transform:uppercase;
+    font-weight:700;
+    margin-top:6px;
+}
+
+.subtitle{
+    margin-top:22px;
+    background:#efe8df;
+    display:inline-block;
+    padding:10px 18px;
+    font-size:24px;
+    text-transform:uppercase;
+    color:#444;
+    letter-spacing:1px;
+}
+
+/* =========================
+   LIST
+========================= */
+
+.list{
+    padding:0;
+    background:#e9e1d7;
+}
+
+.place{
+    display:grid;
+    grid-template-columns:220px 1fr 190px;
+    gap:16px;
+
+    background:#f8f4ef;
+    border:none;
+    border-bottom:2px solid #d8cec2;
+
+    margin-bottom:0;
+    padding:14px;
+    align-items:center;
+}
+
+.place-image img{
+    width:100%;
+    height:160px;
+    object-fit:cover;
+}
+
+.place-info h2{
+    font-size:44px;
+    text-transform:uppercase;
+    color:#2f2f2f;
+    line-height:1;
+    margin-bottom:7px;
+}
+
+.place-info .tagline{
+    font-size:25px;
+    color:#555;
+    margin-bottom:7px;
+    font-weight:500;
+}
+
+.place-info .desc{
+    font-size:19px;
+    color:#666;
+    line-height:1.35;
+    margin-bottom:9px;
+}
+
+.place-info .extra{
+    font-size:17px;
+    color:#888;
+    line-height:1.3;
+    font-style:italic;
+}
+
+.features{
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.feature{
+    font-size:19px;
+    color:#555;
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
+.circle{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background:#d8c5b5;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+
+    font-size:18px;
+    color:#3d3d3d;
+    text-transform:uppercase;
+    line-height:1.2;
+
+    padding:10px;
+    margin-left:auto;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    background:#73816d;
+    color:white;
+    text-align:center;
+    padding:16px;
+    font-size:24px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+</style>
+</head>
+<body>
+
+<div class="poster">
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <img src="{{heroImage}}" alt="">
+
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+
+            <div class="brush">
+                Where To
+            </div>
+
+            <div class="big-title">
+                <span class="stay">STAY</span>
+                <span class="city">IN {{city}}</span>
+            </div>
+
+            <div class="subtitle">
+                {{subtitle}}
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- LIST -->
+    <section class="list">
+
+        <!-- ITEM 1 -->
+        <div class="place">
+
+            <div class="place-image">
+                <img src="{{image1}}">
+            </div>
+
+            <div class="place-info">
+                <h2>{{area1}}</h2>
+
+                <div class="tagline">
+                    {{tagline1}}
+                </div>
+
+                <div class="desc">
+                    {{desc1}}
+                </div>
+
+                <div class="extra">
+                    {{extra1}}
+                </div>
+            </div>
+
+            <div class="features">
+
+                <div class="feature">{{feature1a}}</div>
+                <div class="feature">{{feature1b}}</div>
+                <div class="feature">{{feature1c}}</div>
+
+                <div class="circle">
+                    {{bestFor1}}
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ITEM 2 -->
+        <div class="place">
+
+            <div class="place-image">
+                <img src="{{image2}}">
+            </div>
+
+            <div class="place-info">
+                <h2>{{area2}}</h2>
+
+                <div class="tagline">
+                    {{tagline2}}
+                </div>
+
+                <div class="desc">
+                    {{desc2}}
+                </div>
+
+                <div class="extra">
+                    {{extra2}}
+                </div>
+            </div>
+
+            <div class="features">
+
+                <div class="feature">{{feature2a}}</div>
+                <div class="feature">{{feature2b}}</div>
+                <div class="feature">{{feature2c}}</div>
+
+                <div class="circle">
+                    {{bestFor2}}
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ITEM 3 -->
+        <div class="place">
+
+            <div class="place-image">
+                <img src="{{image3}}">
+            </div>
+
+            <div class="place-info">
+                <h2>{{area3}}</h2>
+
+                <div class="tagline">
+                    {{tagline3}}
+                </div>
+
+                <div class="desc">
+                    {{desc3}}
+                </div>
+
+                <div class="extra">
+                    {{extra3}}
+                </div>
+            </div>
+
+            <div class="features">
+
+                <div class="feature">{{feature3a}}</div>
+                <div class="feature">{{feature3b}}</div>
+                <div class="feature">{{feature3c}}</div>
+
+                <div class="circle">
+                    {{bestFor3}}
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- ITEM 4 -->
+        <div class="place">
+
+            <div class="place-image">
+                <img src="{{image4}}">
+            </div>
+
+            <div class="place-info">
+                <h2>{{area4}}</h2>
+
+                <div class="tagline">
+                    {{tagline4}}
+                </div>
+
+                <div class="desc">
+                    {{desc4}}
+                </div>
+
+                <div class="extra">
+                    {{extra4}}
+                </div>
+            </div>
+
+            <div class="features">
+
+                <div class="feature">{{feature4a}}</div>
+                <div class="feature">{{feature4b}}</div>
+                <div class="feature">{{feature4c}}</div>
+
+                <div class="circle">
+                    {{bestFor4}}
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <div class="footer">
+        {{footer}}
+    </div>
+
+</div>
+
+</body>
+</html>

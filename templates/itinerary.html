@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>3 Day Travel Itinerary</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#ddd6cb;
+    font-family:'Oswald', sans-serif;
+    width:1000px;
+    height:1500px;
+    margin:0;
+    padding:0;
+}
+
+.poster{
+    width:100%;
+    height:100%;
+    background:
+        linear-gradient(rgba(255,255,255,0.04), rgba(255,255,255,0.04)),
+        #f3ede4;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    text-align:center;
+    padding:35px 40px 18px;
+}
+
+.day-badge{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#5f735f;
+    color:white;
+
+    padding:10px 30px;
+
+    font-size:42px;
+    font-weight:700;
+    text-transform:uppercase;
+
+    clip-path:polygon(
+        5% 0,
+        100% 0,
+        95% 100%,
+        0 100%
+    );
+}
+
+.script{
+    font-family:'Caveat', cursive;
+    font-size:140px;
+    line-height:0.85;
+    color:#222;
+
+    margin-top:8px;
+}
+
+.title{
+    font-size:68px;
+    text-transform:uppercase;
+    color:#5f735f;
+    letter-spacing:2px;
+    font-weight:700;
+
+    margin-top:8px;
+}
+
+.subtitle{
+    margin-top:16px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+
+    color:#444;
+    font-size:26px;
+    text-transform:uppercase;
+}
+
+.subtitle::before,
+.subtitle::after{
+    content:"";
+    width:70px;
+    height:2px;
+    background:#a79e92;
+}
+
+/* =========================
+   DAYS
+========================= */
+
+.days{
+    display:flex;
+    gap:16px;
+
+    padding:25px 25px 15px;
+
+    align-items:stretch;
+    flex:1;
+}
+
+.day{
+    flex:1;
+
+    background:#fff;
+    border:2px solid #ddd2c3;
+
+    display:flex;
+    flex-direction:column;
+}
+
+.day-top{
+    display:flex;
+    justify-content:center;
+
+    margin-top:-12px;
+
+    position:relative;
+    z-index:2;
+}
+
+.ribbon{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    min-width:140px;
+    height:50px;
+
+    color:white;
+
+    font-size:30px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:1px;
+
+    clip-path:polygon(
+        6% 0,
+        100% 0,
+        94% 100%,
+        0 100%
+    );
+}
+
+.green{
+    background:#657b63;
+}
+
+.red{
+    background:#c07a78;
+}
+
+.day-image{
+    margin:14px;
+    height:280px;
+    overflow:hidden;
+}
+
+.day-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+}
+
+/* =========================
+   ACTIVITIES
+========================= */
+
+.activities{
+    padding:0 16px 18px;
+
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+    flex:1;
+}
+
+.activity{
+    display:flex;
+    align-items:flex-start;
+    gap:10px;
+}
+
+.icon{
+    width:32px;
+    min-width:32px;
+
+    font-size:24px;
+    line-height:1;
+}
+
+.activity-text h3{
+    font-size:22px;
+    text-transform:uppercase;
+    color:#333;
+    line-height:1.1;
+}
+
+.activity-text p{
+    font-size:18px;
+    color:#666;
+
+    margin-top:4px;
+    line-height:1.3;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+.footer{
+    padding:20px 30px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-end;
+}
+
+.note{
+    font-family:'Caveat', cursive;
+    font-size:52px;
+    color:#222;
+    line-height:1.1;
+}
+
+.arrow{
+    font-size:56px;
+    color:#444;
+}
+
+.map{
+    width:220px;
+    height:150px;
+
+    background:white;
+
+    padding:8px;
+
+    transform:rotate(-3deg);
+
+    box-shadow:0 6px 18px rgba(0,0,0,0.15);
+}
+
+.map img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+</style>
+</head>
+<body>
+
+<div class="poster">
+
+    <!-- HEADER -->
+    <section class="header">
+
+        <div class="day-badge">
+            {{dayCount}}-Day
+        </div>
+
+        <div class="script">
+            {{city}}
+        </div>
+
+        <div class="title">
+            Itinerary
+        </div>
+
+        <div class="subtitle">
+            {{subtitle}}
+        </div>
+
+    </section>
+
+    <!-- DAYS -->
+    <section class="days">
+
+        <!-- DAY 1 -->
+        <div class="day">
+
+            <div class="day-top">
+                <div class="ribbon green">
+                    Day 1
+                </div>
+            </div>
+
+            <div class="day-image">
+                <img src="{{day1Image}}">
+            </div>
+
+            <div class="activities">
+
+                <div class="activity">
+                    <div class="icon">{{day1Icon1}}</div>
+
+                    <div class="activity-text">
+                        <h3>{{day1Title1}}</h3>
+                        <p>{{day1Desc1}}</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="icon">{{day1Icon2}}</div>
+
+                    <div class="activity-text">
+                        <h3>{{day1Title2}}</h3>
+                        <p>{{day1Desc2}}</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="icon">{{day1Icon3}}</div>
+
+                    <div class="activity-text">
+                        <h3>{{day1Title3}}</h3>
+                        <p>{{day1Desc3}}</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="icon">{{day1Icon4}}</div>
+
+                    <div class="activity-text">
+                        <h3>{{day1Title4}}</h3>
+                        <p>{{day1Desc4}}</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- DAY 2 -->
+        <div class="day">
+
+            <div class="day-top">
+                <div class="ribbon red">
+                    Day 2
+                </div>
+            </div>
+
+            <div class="day-image">
+                <img src="{{day2Image}}">
+            </div>
+
+            <div class="activities">
+
+                <div class="activity">
+                    <div class="icon">{{day2Icon1}}</div>
+
+                    <div class="activity-text">
+                        <h3>{{day2Title1}}</h3>
+                        <p>{{day2Desc1}}</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="icon">{{day2Icon2}}</div>
+
+                    <div class="activity-text">
+                        <h3>{{day2Title2}}</h3>
+                        <p>{{day2Desc2}}</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="icon">{{day2Icon3}}</div>
+
+                    <div class="activity-text">
+                        <h3>{{day2Title3}}</h3>
+                        <p>{{day2Desc3}}</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="icon">{{day2Icon4}}</div>
+
+                    <div class="activity-text">
+                        <h3>{{day2Title4}}</h3>
+                        <p>{{day2Desc4}}</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- DAY 3 -->
+        <div class="day">
+
+            <div class="day-top">
+                <div class="ribbon green">
+                    Day 3
+                </div>
+            </div>
+
+            <div class="day-image">
+                <img src="{{day3Image}}">
+            </div>
+
+            <div class="activities">
+
+                <div class="activity">
+                    <div class="icon">{{day3Icon1}}</div>
+
+                    <div class="activity-text">
+                        <h3>{{day3Title1}}</h3>
+                        <p>{{day3Desc1}}</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="icon">{{day3Icon2}}</div>
+
+                    <div class="activity-text">
+                        <h3>{{day3Title2}}</h3>
+                        <p>{{day3Desc2}}</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="icon">{{day3Icon3}}</div>
+
+                    <div class="activity-text">
+                        <h3>{{day3Title3}}</h3>
+                        <p>{{day3Desc3}}</p>
+                    </div>
+                </div>
+
+                <div class="activity">
+                    <div class="icon">{{day3Icon4}}</div>
+
+                    <div class="activity-text">
+                        <h3>{{day3Title4}}</h3>
+                        <p>{{day3Desc4}}</p>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- FOOTER -->
+    <section class="footer">
+
+        <div>
+            <div class="note">
+                {{footerNote}}
+            </div>
+
+            <div class="arrow">
+                ↗
+            </div>
+        </div>
+
+        <div class="map">
+            <img src="{{mapImage}}">
+        </div>
+
+    </section>
+
+</div>
+
+</body>
+</html>
